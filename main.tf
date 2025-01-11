@@ -66,7 +66,7 @@ resource "azurerm_lb_rule" "lb" {
   frontend_port                  = each.value.frontend_port
   backend_port                   = each.value.backend_port
   frontend_ip_configuration_name = "InternalIpAddress"
-  backend_address_pool_ids        = azurerm_lb_backend_address_pool.lb.id
+  backend_address_pool_ids        = [azurerm_lb_backend_address_pool.lb.id]
   probe_id                       = azurerm_lb_probe.lb[each.value.name].id
 
   // Resource defaults as per https://www.terraform.io/docs/providers/azurerm/r/lb_rule.html
