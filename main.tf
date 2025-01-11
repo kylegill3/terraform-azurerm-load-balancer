@@ -44,7 +44,7 @@ resource "azurerm_lb" "lb" {
 }
 
 resource "azurerm_lb_backend_address_pool" "lb" {
-  resource_group_name = local.resource_group_name
+  #resource_group_name = local.resource_group_name
   loadbalancer_id     = azurerm_lb.lb.id
   name                = var.name
 }
@@ -52,7 +52,7 @@ resource "azurerm_lb_backend_address_pool" "lb" {
 resource "azurerm_lb_probe" "lb" {
   for_each            = local.load_balancer_rules_map
   name                = "probe-port-${each.value.backend_port}"
-  resource_group_name = local.resource_group_name
+  #resource_group_name = local.resource_group_name
   loadbalancer_id     = azurerm_lb.lb.id
   port                = each.value.backend_port // local.probe_port
 }
